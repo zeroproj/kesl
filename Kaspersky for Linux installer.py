@@ -80,7 +80,7 @@ def inicio(ip_set,USE_GUI,USER):
     print("\n####################################################\n")
     if (len(param) == 2):
         print(f"\nO IP/DNS: {param[1]} foi definido como paramentro na execução\n")
-        return [param[0],USE_GUI,USER]
+        return [param[1],USE_GUI,USER]
         
     elif(len(param) == 1 and ip_set != ""):
         print(f"\nO IP/DNS: {ip_set} já está definido como paramentrono pacote.\n")
@@ -103,7 +103,7 @@ def inicio(ip_set,USE_GUI,USER):
 subprocess.call("clear", shell = True)
 print("\n####################################################")
 print("# INSTALAÇÃO PROTEÇÃO KASPERSKY ENDPOINT FOR LINUX #")
-print("####################################################\n")
+print("######################################zeroproj v:1.0\n")
 
 print("###############DEFININDO CONFIGURAÇÕES##############\n")
 vet_ins = inicio(ip_set,USE_GUI,USER)
