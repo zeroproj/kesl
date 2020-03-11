@@ -13,7 +13,7 @@ path = os.path.join('/tmp/', 'kaspersky')
 ##################Definição de Instalação Automatica################################################
 
 ip_set = "" #Definir IP - Valores: "" ou "ip/dns"
-USE_GUI = "no" #Ativar GIU - Valores: yes/no
+USE_GUI = "yes" #Ativar GIU - Valores: yes/no
 USER = "" #Nome de usuario com direitos admin do Linux
 
 ##Agente URL
