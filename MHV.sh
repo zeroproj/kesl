@@ -3,7 +3,7 @@ clear
 echo "###########################################################################"
 echo "################# INSTALAÇÃO PROTEÇÃO KASPERSKY ENDPOINT ##################"
 echo "#################### OS: Debian/Ubuntu/CentOS/Fedora ######################"
-echo -e "## www.microhard.com.br ############################## KESL ## MH_V10 ####\n"
+echo -e "## www.microhard.com.br ############################### KESL ## MH_V10 ###\n"
 #Desenvolvido por Lucas Matheus
 #Lucas Matheus - lucasmatheus@microhard.com.br
 #Suporte - atendimento@microhard.com.br
