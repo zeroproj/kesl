@@ -166,6 +166,13 @@ else
   elif [[ $P_01 = "-u" ]]; then
     echo -e "\nSelecionado atualização de script" >> $dic_temp'kaspersky.log'
     wget -q -c -O $dic_temp'vs.raw' -P $dic_temp $link_up
+    if [ $? -eq 0 ];then
+      echo -e "\nArquivo de atualizacao baixado" >> $dic_temp'kaspersky.log'
+    else
+      echo "Falha ao realizar a checagem da atualização"
+      echo -e "\nFalha ao baixar o arquivo de atualizacao" >> $dic_temp'kaspersky.log'
+      exit 0
+    fi
     arquivo=$dic_temp'vs.raw'
     while read linha || [[ -n "$linha" ]]; do
     nvs=$linha
@@ -177,7 +184,15 @@ else
       echo -e "INFORMAÇOES DO SCRIPT"
       Dir_nvs=$(pwd)$(echo /MHV$nvs.sh)
       Dir_avs=$(pwd)$(echo $N_arq|sed 's/^.//g')
-      wget -q -c -O $dic_temp$(echo /MHV$nvs.sh) -P $dic_temp $scriptline
+      echo $(pwd)$(echo /MHV$nvs.sh)
+      wget -q -c -O $(pwd)$(echo /MHV$nvs.sh) -P $(pwd) $scriptline
+      if [ $? -eq 0 ];then
+    	  echo -e "\nArquivo de atualizacao (SCRIPT) baixado" >> $dic_temp'kaspersky.log'
+      else
+        echo "Falha ao realizar a checagem da atualização"
+        echo -e "\nFalha ao baixar o arquivo (SCRIPT) de atualizacao" >> $dic_temp'kaspersky.log'
+        exit 0
+      fi
       echo "Script Novo $Dir_nvs"
       echo "Script Anterior $Dir_avs"
       echo -e "\nCONFIGURAÇÃO DO SCRIPT"
