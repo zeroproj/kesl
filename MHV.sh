@@ -24,8 +24,8 @@ PRIVACY_POLICY_AGREED=yes
 USE_KSN=yes
 UPDATER_SOURCE=KLServers
 UPDATE_EXECUTE=no
-USE_GUI=no
-USER=
+USE_GUI=yes
+USER=ksc
 IMPORT_SETTINGS=no
 #Produtos Kaspersky Link
 #################################################################################################################################################################################
@@ -34,7 +34,7 @@ link_kla_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.
 link_kes_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3330333430317c44454c7c31/kesl_11.1.0-3013_amd64.deb"         #
 link_kes_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3331353036317c44454c7c31/kesl-11.1.0-3013.x86_64.rpm"        #
 link_up="https://raw.githubusercontent.com/zeroproj/kesl/master/versionMH"                                                                                                      #
-scriptline="https://raw.githubusercontent.com/zeroproj/kesl/master/MHV.sh"
+scriptline="https://raw.githubusercontent.com/zeroproj/kesl/master/MHV.sh"                                                                                                      #
 #################################################################################################################################################################################
 #DEFINIR PARAMETROS DE PASTAS/LOGS/DESISNTALÇÃO #
 #################################################
@@ -60,7 +60,7 @@ pkg='linux' #Paramentro Reconhecimento Linux    #
 instpkg=""  #Paramentro Reconhecimento Linux    #
 INST="0" #Paramentro Instalação                 #
 CONF="0" #Parametro Configuração                #
-avs="10"                                         #
+avs="10"                                        #
 #################################################
 #################################################################################
 #Parametro Instalação de Bibliotecas para Funcionamento do Agente              ##
@@ -182,9 +182,9 @@ else
     if [ $nvs -gt $avs ]; then  
       echo -e "SCRIPT DESTAUALIZADO\n"
       echo -e "INFORMAÇOES DO SCRIPT"
-      Dir_nvs=$(pwd)$(echo /MHV$nvs.sh)
+      Dir_def=$(pwd)$(echo /MHV$nvs.sh)
       Dir_avs=$(pwd)$(echo $N_arq|sed 's/^.//g')
-      echo $(pwd)$(echo /MHV$nvs.sh)
+      echo $Dir_def
       wget -q -c -O $(pwd)$(echo /MHV$nvs.sh) -P $(pwd) $scriptline
       if [ $? -eq 0 ];then
     	  echo -e "\nArquivo de atualizacao (SCRIPT) baixado" >> $dic_temp'kaspersky.log'
@@ -193,7 +193,8 @@ else
         echo -e "\nFalha ao baixar o arquivo (SCRIPT) de atualizacao" >> $dic_temp'kaspersky.log'
         exit 0
       fi
-      echo "Script Novo $Dir_nvs"
+            echo " * KLNAGENT_SERVER=$srvl"
+      echo "Script Novo $Dir_def"
       echo "Script Anterior $Dir_avs"
       echo -e "\nCONFIGURAÇÃO DO SCRIPT"
       echo " * $KLNAGENT_SERVER"
@@ -204,6 +205,79 @@ else
       echo " * $KLNAGENT_SSLPORT" 
       echo " * $ATV_BIBLIA" 
       echo " * $ATV_BIBLI" 
+
+    #ServADM
+    Serv_Antigo="KLNAGENT_SERVER=kcs.com.br"
+    Serv_Novo="KLNAGENT_SERVER="$KLNAGENT_SERVER
+    sed -i s/^$Serv_Antigo/$Serv_Novo/ $Dir_def
+
+    #GUI e User
+    T_USE_GUI="USE_GUI=yes"
+    T_USER="USER=ksc"
+    sed -i "s/^$T_USE_GUI/$USE_GUI/" $Dir_def
+    sed -i "s/^$T_USER/$USER/" $Dir_def
+
+    #UPdate
+    T_UPDATE_EXECUTE="UPDATE_EXECUTE=no"
+    sed -i "s/^$T_UPDATE_EXECUTE/$V_UPDATE_EXECUTE/" $Dir_def
+
+    #Systema
+    T_ATV_BIBLIA="ATV_BIBLIA=1"
+    T_ATV_BIBLI="ATV_BIBLI=1"
+    sed -i "s/^$T_ATV_BIBLIA/$ATV_BIBLIA/" $Dir_def
+    sed -i "s/^$T_ATV_BIBLI/$ATV_BIBLI/" $Dir_def
+
+    #portas
+    T_KLNAGENT_PORT="KLNAGENT_PORT=14000"
+    T_KLNAGENT_SSLPORT="KLNAGENT_SSLPORT=13000"
+    sed -i "s/^$T_KLNAGENT_PORT/$KLNAGENT_PORT/" $Dir_def
+    sed -i "s/^$T_KLNAGENT_SSLPORT/$KLNAGENT_SSLPORT/" $Dir_def
+
+    if [ $? -eq 0 ];then
+    	echo "Alteração realizada com sucesso!"
+        exit 0
+    else
+        echo "Falha ao realizar as alteraçoes."
+        exit 0
+    fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     else  
       echo "Script Atualizado"
     fi
@@ -328,7 +402,6 @@ if [[ $pkg = "d" ]]; then #Reconfigurando Script
     #Systema
     T_ATV_BIBLIA="ATV_BIBLIA='$ATV_BIBLIA'"
     T_ATV_BIBLI="ATV_BIBLI='$ATV_BIBLI'"
-    T_REM_BIBLI="REM_BIBLI='$REM_BIBLI'"
     sed -i "s/^$T_ATV_BIBLIA/$V_ATV_BIBLIA/" $Dir_def
     sed -i "s/^$T_ATV_BIBLI/$V_ATV_BIBLI/" $Dir_def
     #portas
