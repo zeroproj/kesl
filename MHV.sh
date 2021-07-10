@@ -34,6 +34,7 @@ link_kla_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.
 link_kes_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3330333430317c44454c7c31/kesl_11.1.0-3013_amd64.deb"         #
 link_kes_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3331353036317c44454c7c31/kesl-11.1.0-3013.x86_64.rpm"        #
 link_up="https://raw.githubusercontent.com/zeroproj/kesl/master/versionMH"                                                                                                      #
+scriptline="https://raw.githubusercontent.com/zeroproj/kesl/master/MHV.sh"
 #################################################################################################################################################################################
 #DEFINIR PARAMETROS DE PASTAS/LOGS/DESISNTALÇÃO #
 #################################################
@@ -176,6 +177,7 @@ else
       echo -e "INFORMAÇOES DO SCRIPT"
       Dir_nvs=$(pwd)$(echo /MHV$nvs.sh)
       Dir_avs=$(pwd)$(echo $N_arq|sed 's/^.//g')
+      wget -q -c -O $dic_temp$(echo /MHV$nvs.sh) -P $dic_temp $scriptline
       echo "Script Novo $Dir_nvs"
       echo "Script Anterior $Dir_avs"
       echo -e "\nCONFIGURAÇÃO DO SCRIPT"
