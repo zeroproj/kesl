@@ -180,104 +180,71 @@ else
     echo -e "\nVersão Atual $avs" >> $dic_temp'kaspersky.log'
     echo -e "\nVersão Atual $nvs" >> $dic_temp'kaspersky.log'
     if [ $nvs -gt $avs ]; then  
-      echo -e "SCRIPT DESTAUALIZADO\n"
-      echo -e "INFORMAÇOES DO SCRIPT"
-      Dir_def=$(pwd)$(echo /MHV$nvs.sh)
-      Dir_avs=$(pwd)$(echo $N_arq|sed 's/^.//g')
-      echo $Dir_def
-      wget -q -c -O $(pwd)$(echo /MHV$nvs.sh) -P $(pwd) $scriptline
-      if [ $? -eq 0 ];then
-    	  echo -e "\nArquivo de atualizacao (SCRIPT) baixado" >> $dic_temp'kaspersky.log'
-      else
-        echo "Falha ao realizar a checagem da atualização"
-        echo -e "\nFalha ao baixar o arquivo (SCRIPT) de atualizacao" >> $dic_temp'kaspersky.log'
-        exit 0
-      fi
-            echo " * KLNAGENT_SERVER=$srvl"
-      echo "Script Novo $Dir_def"
-      echo "Script Anterior $Dir_avs"
-      echo -e "\nCONFIGURAÇÃO DO SCRIPT"
-      echo " * $KLNAGENT_SERVER"
-      echo " * $USE_GUI" 
-      echo " * $USER" 
-      echo " * $UPDATE_EXECUTE" 
-      echo " * $KLNAGENT_PORT" 
-      echo " * $KLNAGENT_SSLPORT" 
-      echo " * $ATV_BIBLIA" 
-      echo " * $ATV_BIBLI" 
+        echo -e "SCRIPT DESTAUALIZADO\n"
+        echo -e "INFORMAÇOES DO SCRIPT"
+        Dir_def=$(pwd)$(echo /MHV$nvs.sh)
+        Dir_avs=$(pwd)$(echo $N_arq|sed 's/^.//g')
+        echo $Dir_def
+        wget -q -c -O $(pwd)$(echo /MHV$nvs.sh) -P $(pwd) $scriptline
+        if [ $? -eq 0 ];then
+            echo -e "\nArquivo de atualizacao (SCRIPT) baixado" >> $dic_temp'kaspersky.log'
+        else
+            echo "Falha ao realizar a checagem da atualização"
+            echo -e "\nFalha ao baixar o arquivo (SCRIPT) de atualizacao" >> $dic_temp'kaspersky.log'
+            exit 0
+        fi
+                echo " * KLNAGENT_SERVER=$srvl"
+        echo "Script Novo $Dir_def"
+        echo "Script Anterior $Dir_avs"
+        echo -e "\nCONFIGURAÇÃO DO SCRIPT"
+        echo " * $KLNAGENT_SERVER"
+        echo " * $USE_GUI" 
+        echo " * $USER" 
+        echo " * $UPDATE_EXECUTE" 
+        echo " * $KLNAGENT_PORT" 
+        echo " * $KLNAGENT_SSLPORT" 
+        echo " * $ATV_BIBLIA" 
+        echo " * $ATV_BIBLI" 
+        #ServADM
+        Serv_Antigo="KLNAGENT_SERVER=kcs.com.br"
+        Serv_Novo="KLNAGENT_SERVER="$KLNAGENT_SERVER
+        sed -i s/^$Serv_Antigo/$Serv_Novo/ $Dir_def
 
-    #ServADM
-    Serv_Antigo="KLNAGENT_SERVER=kcs.com.br"
-    Serv_Novo="KLNAGENT_SERVER="$KLNAGENT_SERVER
-    sed -i s/^$Serv_Antigo/$Serv_Novo/ $Dir_def
+        #GUI e User
+        T_USE_GUI="USE_GUI=yes"
+        T_USER="USER=ksc"
+        V_USE_GUI="USE_GUI="$USE_GUI
+        V_USER="USER=$USER"
+        sed -i "s/^$T_USE_GUI/$V_USE_GUI/" $Dir_def
+        sed -i "s/^$T_USER/$V_USER/" $Dir_def
 
-    #GUI e User
-    T_USE_GUI="USE_GUI=yes"
-    T_USER="USER=ksc"
-    sed -i "s/^$T_USE_GUI/$USE_GUI/" $Dir_def
-    sed -i "s/^$T_USER/$USER/" $Dir_def
+        #UPdate
+        T_UPDATE_EXECUTE="UPDATE_EXECUTE=no"
+        V_UPDATE_EXECUTE="UPDATE_EXECUTE="$UPDATE_EXECUTE
+        sed -i "s/^$T_UPDATE_EXECUTE/$V_UPDATE_EXECUTE/" $Dir_def
 
-    #UPdate
-    T_UPDATE_EXECUTE="UPDATE_EXECUTE=no"
-    sed -i "s/^$T_UPDATE_EXECUTE/$V_UPDATE_EXECUTE/" $Dir_def
+        #Systema
+        T_ATV_BIBLIA="ATV_BIBLIA='1'"
+        T_ATV_BIBLI="ATV_BIBLI='1'"
+        V_ATV_BIBLIA="ATV_BIBLIA='$ATV_BIBLIA'"
+        V_ATV_BIBLI="ATV_BIBLI='$ATV_BIBLI'"
+        sed -i "s/^$T_ATV_BIBLIA/$V_ATV_BIBLIA/" $Dir_def
+        sed -i "s/^$T_ATV_BIBLI/$V_ATV_BIBLI/" $Dir_def
 
-    #Systema
-    T_ATV_BIBLIA="ATV_BIBLIA=1"
-    T_ATV_BIBLI="ATV_BIBLI=1"
-    sed -i "s/^$T_ATV_BIBLIA/$ATV_BIBLIA/" $Dir_def
-    sed -i "s/^$T_ATV_BIBLI/$ATV_BIBLI/" $Dir_def
-
-    #portas
-    T_KLNAGENT_PORT="KLNAGENT_PORT=14000"
-    T_KLNAGENT_SSLPORT="KLNAGENT_SSLPORT=13000"
-    sed -i "s/^$T_KLNAGENT_PORT/$KLNAGENT_PORT/" $Dir_def
-    sed -i "s/^$T_KLNAGENT_SSLPORT/$KLNAGENT_SSLPORT/" $Dir_def
-
-    if [ $? -eq 0 ];then
-    	echo "Alteração realizada com sucesso!"
-        exit 0
-    else
-        echo "Falha ao realizar as alteraçoes."
-        exit 0
-    fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        #portas
+        T_KLNAGENT_PORT="KLNAGENT_PORT=14000"
+        T_KLNAGENT_SSLPORT="KLNAGENT_SSLPORT=13000"
+        V_KLNAGENT_PORT="KLNAGENT_PORT="$KLNAGENT_PORT
+        V_KLNAGENT_SSLPORT="KLNAGENT_SSLPORT="$KLNAGENT_SSLPORT
+        sed -i "s/^$T_KLNAGENT_PORT/$V_KLNAGENT_PORT/" $Dir_def
+        sed -i "s/^$T_KLNAGENT_SSLPORT/$V_KLNAGENT_SSLPORT/" $Dir_def
+        if [ $? -eq 0 ];then
+            echo "ATUALIZAÇÃO REALIZADA DO SUCESSO!"
+            exit 0
+        else
+            echo "FALHA AO REALIZAR A ATUALIZAÇÃO!"
+            exit 0
+        fi
     else  
       echo "Script Atualizado"
     fi
