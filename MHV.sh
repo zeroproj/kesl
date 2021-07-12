@@ -24,8 +24,8 @@ PRIVACY_POLICY_AGREED=yes
 USE_KSN=yes
 UPDATER_SOURCE=KLServers
 UPDATE_EXECUTE=no
-USE_GUI=yes
-USER=ksc
+USE_GUI=no
+USER=
 IMPORT_SETTINGS=no
 #Produtos Kaspersky Link
 #################################################################################################################################################################################
@@ -180,8 +180,8 @@ else
     echo -e "\nVersão Atual $avs" >> $dic_temp'kaspersky.log'
     echo -e "\nVersão Atual $nvs" >> $dic_temp'kaspersky.log'
     if [ $nvs -gt $avs ]; then  
-        echo -e "SCRIPT DESTAUALIZADO\n"
-        echo -e "INFORMAÇOES DO SCRIPT"
+        echo -e " * SCRIPT DESATUALIZADO\n"
+        echo -e " * INFORMAÇOES DO SCRIPT"
         Dir_def=$(pwd)$(echo /MHV$nvs.sh)
         Dir_avs=$(pwd)$(echo $N_arq|sed 's/^.//g')
         echo $Dir_def
@@ -225,7 +225,7 @@ else
 
         #Systema
         T_ATV_BIBLIA="ATV_BIBLIA='1'"
-        T_ATV_BIBLI="ATV_BIBLI='1'"
+        T_ATV_BIBLI="ATV_BIBLI='1'"DESTAUALIZADO
         V_ATV_BIBLIA="ATV_BIBLIA='$ATV_BIBLIA'"
         V_ATV_BIBLI="ATV_BIBLI='$ATV_BIBLI'"
         sed -i "s/^$T_ATV_BIBLIA/$V_ATV_BIBLIA/" $Dir_def
@@ -239,14 +239,14 @@ else
         sed -i "s/^$T_KLNAGENT_PORT/$V_KLNAGENT_PORT/" $Dir_def
         sed -i "s/^$T_KLNAGENT_SSLPORT/$V_KLNAGENT_SSLPORT/" $Dir_def
         if [ $? -eq 0 ];then
-            echo "ATUALIZAÇÃO REALIZADA DO SUCESSO!"
+            echo " * ATUALIZAÇÃO REALIZADA DO SUCESSO!"
             exit 0
         else
-            echo "FALHA AO REALIZAR A ATUALIZAÇÃO!"
+            echo " * FALHA AO REALIZAR A ATUALIZAÇÃO!"
             exit 0
         fi
     else  
-      echo "Script Atualizado"
+      echo " * Script Atualizado"
     fi
     exit 0
   else
