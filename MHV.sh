@@ -3,7 +3,7 @@ clear
 echo "###########################################################################"
 echo "################# INSTALAÇÃO PROTEÇÃO KASPERSKY ENDPOINT ##################"
 echo "#################### OS: Debian/Ubuntu/CentOS/Fedora ######################"
-echo -e "## www.microhard.com.br ############################# KESL ## MH_V11.0 ###\n"
+echo -e "## www.microhard.com.br ############################# KESL ## MH_V11.1 ###\n"
 #Desenvolvido por Lucas Matheus
 #Lucas Matheus - lucasmatheus@microhard.com.br
 #Suporte - atendimento@microhard.com.br
@@ -181,7 +181,8 @@ else
     done < "$arquivo"
     echo -e "\nVersão Atual $avs" >> $dic_temp'kaspersky.log'
     echo -e "\nNova Atual $nvs" >> $dic_temp'kaspersky.log'
-    if [ $nvs -gt $avs ]; then
+    if [ $nvs -ge $avs ]; then
+    #if [ $nvs -gt $avs ]; then
         echo -e " * SCRIPT DESATUALIZADO\n"
         echo -e " * INFORMAÇOES DO SCRIPT"
         Dir_def=$(pwd)$(echo /MHV$nvs.sh)
