@@ -180,9 +180,9 @@ else
     nvs=$linha
     done < "$arquivo"
     echo -e " * Versão Atual $avs"
-    echo -e " * Nova Atual $nvs"
+    echo -e " * Nova Versão $nvs"
     echo -e "\nVersão Atual $avs" >> $dic_temp'kaspersky.log'
-    echo -e "\nNova Atual $nvs" >> $dic_temp'kaspersky.log'
+    echo -e "\nNova Versão $nvs" >> $dic_temp'kaspersky.log'
     #if [ $nvs -ge $avs ]; then
     if [ $nvs -gt $avs ]; then
         echo -e " * SCRIPT DESATUALIZADO\n"
@@ -686,7 +686,7 @@ if [[ $pkg = "c" || $instpkg = "yum" || $instpkg = "apt" || $instpkg = "dnf" ]];
   if [[ -d $kes ]]; then
     echo " * Gerando arquivo de configuração Endpoint"
     touch $dic_temp'kesl_autoanswers.conf'
-    echo -e "EULA_AGREED=$EULA_AGREED\nPRIVACY_POLICY_AGREED=$PRIVACY_POLICY_AGREED\nUSE_KSN=$USE_KSN\nUPDATER_SOURCE=$UPDATER_SOURCE\nUPDATE_EXECUTE=$UPDATE_EXECUTE\nUSE_GUI=$USE_GUI\nIMPORT_SETTINGS=$IMPORT_SETTINGS\nADMIN_USER_IF_USE_GUI=$USER" >> $dic_temp'kesl_autoanswers.conf'
+    echo -e "EULA_AGREED=$EULA_AGREED\nPRIVACY_POLICY_AGREED=$PRIVACY_POLICY_AGREED\nUSE_KSN=$USE_KSN\nUPDATER_SOURCE=$UPDATER_SOURCE\nUPDATE_EXECUTE=$UPDATE_EXECUTE\nUSE_GUI=$USE_GUI\nIMPORT_SETTINGS=$IMPORT_SETTINGS\nADMIN_USER=$USER" >> $dic_temp'kesl_autoanswers.conf'
     echo " * Configurando Kaspersky Endpoint"
     /opt/kaspersky/kesl/bin/kesl-setup.pl --autoinstall=$dic_temp'kesl_autoanswers.conf'
     if [ $? -eq 0 ];then
