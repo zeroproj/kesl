@@ -418,8 +418,10 @@ if [[ $P_01 = "-r" || $instpkg = "yum" || $instpkg = "apt" || $instpkg = "dnf" ]
     echo " * Realizando remoção do Kaspersky Endpoint"
     echo -e "Realizando remoção do Kaspersky Endpoint" >> $dic_temp'kaspersky.log'
     if [ $pkg = "rpm" ]; then
+      rpm -e kesl-gui >> $dic_temp'kaspersky.log'
       rpm -e kesl >> $dic_temp'kaspersky.log'
     elif [ $pkg = "dpkg" ]; then
+      dpkg -r kesl-gui >> $dic_temp'kaspersky.log'
       dpkg -r kesl >> $dic_temp'kaspersky.log'
     fi
     echo -e "Remoção do Kaspersky Endpoint concluida" >> $dic_temp'kaspersky.log'
