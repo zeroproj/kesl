@@ -667,10 +667,11 @@ fi
 if [[ $pkg = "c" || $instpkg = "yum" || $instpkg = "apt" || $instpkg = "dnf" ]]; then #Reconfigurando Kaspersky
   if [[ -d $klna ]]; then
   echo " * Gerando arquivo de configuração Agente de Rede"
-  touch $dic_temp'kesl_autoanswers.conf'
+  touch $dic_temp'autoanswers.conf'
   echo -e "KLNAGENT_SERVER=$KLNAGENT_SERVER\nKLNAGENT_PORT=$KLNAGENT_PORT\nKLNAGENT_SSLPORT=$KLNAGENT_SSLPORT\nKLNAGENT_USESSL=$KLNAGENT_USESSL\nKLNAGENT_GW_MODE=$KLNAGENT_GW_MODE" >> $dic_temp'autoanswers.conf'
   echo " * Configurando Agente de Rede"
-  /opt/kaspersky/klnagent64/lib/bin/setup/postinstall.pl --auto
+  export KLAUTOANSWERS=$dic_temp'autoanswers.conf'
+  /opt/kaspersky/klnagent64/lib/bin/setup/postinstall.pl
   if [ $? -eq 0 ];then
     echo " * Agente de Rede Configurado"
     echo -e "Kaspersky Agente de Rede = Configurado" >> $dic_temp'kaspersky.log'
