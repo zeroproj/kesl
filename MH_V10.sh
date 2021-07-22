@@ -60,7 +60,7 @@ pkg='linux' #Paramentro Reconhecimento Linux    #
 instpkg=""  #Paramentro Reconhecimento Linux    #
 INST="0" #Paramentro Instalação                 #
 CONF="0" #Parametro Configuração                #
-avs="10"                                        #
+avs="111"                                        #
 #################################################
 #################################################################################
 #Parametro Instalação de Bibliotecas para Funcionamento do Agente              ##
