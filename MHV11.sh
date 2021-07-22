@@ -33,8 +33,10 @@ link_kla_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.
 link_kla_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313131377c44454c7c31/klnagent64-12.0.0-60.x86_64.rpm"        #
 link_kes_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313131347c44454c7c31/kesl_11.2.0-4528_amd64.deb"             #
 link_kes_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313130377c44454c7c31/kesl-11.2.0-4528.x86_64.rpm"            #
-link_up="https://raw.githubusercontent.com/zeroproj/kesl/master/versionMH11"                                                                                                      #
-scriptline="https://raw.githubusercontent.com/zeroproj/kesl/master/MHV11.sh"                                                                                                      #
+link_gui_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313131327c44454c7c4e554c4c/kesl-gui_11.2.0-4528_amd64.deb"   #
+link_gui_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313131307c44454c7c4e554c4c/kesl-gui-11.2.0-4528.x86_64.rpm"  # 
+link_up="https://raw.githubusercontent.com/zeroproj/kesl/master/versionMH11"                                                                                                    #
+scriptline="https://raw.githubusercontent.com/zeroproj/kesl/master/MHV11.sh"                                                                                                    #
 #################################################################################################################################################################################
 #DEFINIR PARAMETROS DE PASTAS/LOGS/DESISNTALÇÃO #
 #################################################
