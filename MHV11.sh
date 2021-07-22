@@ -639,6 +639,20 @@ if [[ $instpkg = "yum" || $instpkg = "apt" || $instpkg = "dnf" ]]; then #Install
       echo -e "\nKaspersky Endpoint = ERRO" >> $dic_temp'kaspersky.log'
       exit 0
     fi
+    if [[ $USE_GUI = "yes" ]]; then
+      echo " * Download do Kaspersky Endpoint GUI"
+      wget -q -c -O $dic_temp'KESG.rpm' -P $dic_temp $link_gui_rpm
+      echo " * Instalando Kaspersky Endpoint GUI"
+      rpm -ivh $dic_temp'KESG.rpm' >> $dic_temp'kaspersky.log'
+      if [ $? -eq 0 ];then
+        echo " * Instalação do Kaspersky Endpoint GUI completa"
+        echo -e "\nKaspersky Endpoint GUI = OK" >> $dic_temp'kaspersky.log'
+      else
+        echo " * Falha na instação do Kaspersky Endpoint\n     - Instalação abortada"
+        echo -e "\nKaspersky Endpoint GUI = ERRO" >> $dic_temp'kaspersky.log'
+        exit 0
+      fi
+    fi
   fi
   if [[ $pkg = "dpkg" ]]; then
     wget -q -c -O $dic_temp'KLA.deb' -P $dic_temp $link_kla_deb
@@ -663,6 +677,20 @@ if [[ $instpkg = "yum" || $instpkg = "apt" || $instpkg = "dnf" ]]; then #Install
       echo " * Falha na instação do Kaspersky Endpoint\n     - Instalação abortada"
       echo -e "\nKaspersky Endpoint = ERRO" >> $dic_temp'kaspersky.log'
       exit 0
+    fi
+    if [[ $USE_GUI = "yes" ]]; then
+      echo " * Download do Kaspersky Endpoint GUI"
+      wget -q -c -O $dic_temp'KESG.deb' -P $dic_temp $link_gui_deb
+      echo " * Instalando Kaspersky Endpoint GUI"
+      dpkg -i $dic_temp'KES.deb' >> $dic_temp'kaspersky.log'
+      if [ $? -eq 0 ];then
+        echo " * Instalação do Kaspersky Endpoint GUI completa"
+        echo -e "\nKaspersky Endpoint GUI = OK" >> $dic_temp'kaspersky.log'
+      else
+        echo " * Falha na instação do Kaspersky Endpoint\n     - Instalação abortada"
+        echo -e "\nKaspersky Endpoint GUI = ERRO" >> $dic_temp'kaspersky.log'
+        exit 0
+      fi
     fi
   fi
 fi
