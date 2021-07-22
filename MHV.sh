@@ -183,8 +183,8 @@ else
     echo -e " * Nova Atual $nvs"
     echo -e "\nVersão Atual $avs" >> $dic_temp'kaspersky.log'
     echo -e "\nNova Atual $nvs" >> $dic_temp'kaspersky.log'
-    if [ $nvs -ge $avs ]; then
-    #if [ $nvs -gt $avs ]; then
+    #if [ $nvs -ge $avs ]; then
+    if [ $nvs -gt $avs ]; then
         echo -e " * SCRIPT DESATUALIZADO\n"
         echo -e " * INFORMAÇOES DO SCRIPT"
         Dir_def=$(pwd)$(echo /MHV$nvs.sh)
