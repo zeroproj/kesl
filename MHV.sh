@@ -186,7 +186,7 @@ else
         echo -e " * INFORMAÇOES DO SCRIPT"
         Dir_def=$(pwd)$(echo /MHV$nvs.sh)
         Dir_avs=$(pwd)$(echo $N_arq|sed 's/^.//g')
-        echo $Dir_def
+        #echo $Dir_def
         wget -q -c -O $(pwd)$(echo /MHV$nvs.sh) -P $(pwd) $scriptline
         if [ $? -eq 0 ];then
 	    echo -e "     - Download da atualização realizado com sucesso."
@@ -196,7 +196,7 @@ else
             echo -e "\nFalha ao baixar o arquivo (SCRIPT) de atualizacao" >> $dic_temp'kaspersky.log'
             exit 0
         fi
-        echo " * KLNAGENT_SERVER=$srvl"
+        #echo " * KLNAGENT_SERVER=$srvl"
         echo "Script Novo $Dir_def"
         echo "Script Anterior $Dir_avs"
         echo -e "\nCONFIGURAÇÃO DO SCRIPT"
@@ -242,7 +242,7 @@ else
         sed -i "s/^$T_KLNAGENT_PORT/$V_KLNAGENT_PORT/" $Dir_def
         sed -i "s/^$T_KLNAGENT_SSLPORT/$V_KLNAGENT_SSLPORT/" $Dir_def
         if [ $? -eq 0 ];then
-            echo " * ATUALIZAÇÃO REALIZADA DO SUCESSO!"
+            echo -e "\n * ATUALIZAÇÃO REALIZADA DO SUCESSO!"
             exit 0
         else
             echo " * FALHA AO REALIZAR A ATUALIZAÇÃO!"
