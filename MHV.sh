@@ -3,7 +3,7 @@ clear
 echo "###########################################################################"
 echo "################# INSTALAÇÃO PROTEÇÃO KASPERSKY ENDPOINT ##################"
 echo "#################### OS: Debian/Ubuntu/CentOS/Fedora ######################"
-echo -e "## www.microhard.com.br ############################### KESL ## MH_V10 ###\n"
+echo -e "## www.microhard.com.br ############################# KESL ## MH_V11.0 ###\n"
 #Desenvolvido por Lucas Matheus
 #Lucas Matheus - lucasmatheus@microhard.com.br
 #Suporte - atendimento@microhard.com.br
@@ -29,10 +29,10 @@ USER=
 IMPORT_SETTINGS=no
 #Produtos Kaspersky Link
 #################################################################################################################################################################################
-link_kla_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3330333430367c44454c7c31/klnagent64_11.0.0-38_amd64.deb"     #
-link_kla_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3330333430347c44454c7c31/klnagent64-11.0.0-38.x86_64.rpm"    #
-link_kes_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3330333430317c44454c7c31/kesl_11.1.0-3013_amd64.deb"         #
-link_kes_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.1.0.3013/multilanguage-INT-11.1.0.3013/3331353036317c44454c7c31/kesl-11.1.0-3013.x86_64.rpm"        #
+link_kla_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313131397c44454c7c31/klnagent64_12.0.0-60_amd64.deb"         #
+link_kla_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313131377c44454c7c31/klnagent64-12.0.0-60.x86_64.rpm"        #
+link_kes_deb="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313131347c44454c7c31/kesl_11.2.0-4528_amd64.deb"             #
+link_kes_rpm="https://products.s.kaspersky-labs.com/endpoints/keslinux10/11.2.0.4528/multilanguage-11.2.0.4528/3437313130377c44454c7c31/kesl-11.2.0-4528.x86_64.rpm"            #
 link_up="https://raw.githubusercontent.com/zeroproj/kesl/master/versionMH"                                                                                                      #
 scriptline="https://raw.githubusercontent.com/zeroproj/kesl/master/MHV.sh"                                                                                                      #
 #################################################################################################################################################################################
@@ -164,12 +164,14 @@ else
     echo -e "\nSelecionado reconfiguração do Script" >> $dic_temp'kaspersky.log'
 
   elif [[ $P_01 = "-u" ]]; then
+    echo " * Checando Atualização"
     echo -e "\nSelecionado atualização de script" >> $dic_temp'kaspersky.log'
     wget -q -c -O $dic_temp'vs.raw' -P $dic_temp $link_up
     if [ $? -eq 0 ];then
+      echo -e "     - Checagem realizada com sucesso."
       echo -e "\nArquivo de atualizacao baixado" >> $dic_temp'kaspersky.log'
     else
-      echo "Falha ao realizar a checagem da atualização"
+      echo -e "     - Falha ao realizar a checagem da atualização"
       echo -e "\nFalha ao baixar o arquivo de atualizacao" >> $dic_temp'kaspersky.log'
       exit 0
     fi
@@ -178,8 +180,8 @@ else
     nvs=$linha
     done < "$arquivo"
     echo -e "\nVersão Atual $avs" >> $dic_temp'kaspersky.log'
-    echo -e "\nVersão Atual $nvs" >> $dic_temp'kaspersky.log'
-    if [ $nvs -gt $avs ]; then  
+    echo -e "\nNova Atual $nvs" >> $dic_temp'kaspersky.log'
+    if [ $nvs -gt $avs ]; then
         echo -e " * SCRIPT DESATUALIZADO\n"
         echo -e " * INFORMAÇOES DO SCRIPT"
         Dir_def=$(pwd)$(echo /MHV$nvs.sh)
@@ -187,13 +189,14 @@ else
         echo $Dir_def
         wget -q -c -O $(pwd)$(echo /MHV$nvs.sh) -P $(pwd) $scriptline
         if [ $? -eq 0 ];then
+	    echo -e "     - Download da atualização realizado com sucesso."
             echo -e "\nArquivo de atualizacao (SCRIPT) baixado" >> $dic_temp'kaspersky.log'
         else
-            echo "Falha ao realizar a checagem da atualização"
+	    echo -e "     - Falha ao realizar o download da atualização"
             echo -e "\nFalha ao baixar o arquivo (SCRIPT) de atualizacao" >> $dic_temp'kaspersky.log'
             exit 0
         fi
-                echo " * KLNAGENT_SERVER=$srvl"
+        echo " * KLNAGENT_SERVER=$srvl"
         echo "Script Novo $Dir_def"
         echo "Script Anterior $Dir_avs"
         echo -e "\nCONFIGURAÇÃO DO SCRIPT"
