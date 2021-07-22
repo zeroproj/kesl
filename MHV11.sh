@@ -682,7 +682,7 @@ if [[ $instpkg = "yum" || $instpkg = "apt" || $instpkg = "dnf" ]]; then #Install
       echo " * Download do Kaspersky Endpoint GUI"
       wget -q -c -O $dic_temp'KESG.deb' -P $dic_temp $link_gui_deb
       echo " * Instalando Kaspersky Endpoint GUI"
-      dpkg -i $dic_temp'KES.deb' >> $dic_temp'kaspersky.log'
+      dpkg -i $dic_temp'KESG.deb' >> $dic_temp'kaspersky.log'
       if [ $? -eq 0 ];then
         echo " * Instalação do Kaspersky Endpoint GUI completa"
         echo -e "\nKaspersky Endpoint GUI = OK" >> $dic_temp'kaspersky.log'
