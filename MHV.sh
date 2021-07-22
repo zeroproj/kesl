@@ -179,6 +179,8 @@ else
     while read linha || [[ -n "$linha" ]]; do
     nvs=$linha
     done < "$arquivo"
+    echo -e " * Versão Atual $avs"
+    echo -e " * Nova Atual $nvs"
     echo -e "\nVersão Atual $avs" >> $dic_temp'kaspersky.log'
     echo -e "\nNova Atual $nvs" >> $dic_temp'kaspersky.log'
     if [ $nvs -ge $avs ]; then
