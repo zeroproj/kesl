@@ -25,7 +25,7 @@ USE_KSN=yes
 UPDATER_SOURCE=KLServers
 UPDATE_EXECUTE=no
 USE_GUI=no
-USER=
+USER=ksc
 IMPORT_SETTINGS=no
 #Produtos Kaspersky Link
 #################################################################################################################################################################################
