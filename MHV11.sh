@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-brand="KESL ## MH_V11.1"
+brand="KESL ## MH_V11.2"
 msgBoot="##########################################################################\n################# INSTALAÇÃO PROTEÇÃO KASPERSKY ENDPOINT #################\n#################### OS: Debian/Ubuntu/CentOS/Fedora #####################\n## www.microhard.com.br ############################# $brand ###\n"
 echo -e $msgBoot
 #Desenvolvido por Lucas Matheus
@@ -55,7 +55,7 @@ pkg='linux' #Paramentro Reconhecimento Linux    #
 instpkg=""  #Paramentro Reconhecimento Linux    #
 INST="0" #Paramentro Instalação                 #
 CONF="0" #Parametro Configuração                #
-avs="111"                                       #
+avs="112"                                       #
 #################################################
 #################################################################################
 #Parametro Instalação de Bibliotecas para Funcionamento do Agente              ##
